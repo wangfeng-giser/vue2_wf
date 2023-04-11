@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="custom_form">
-    <el-form ref="form" :model="json_form" label-width="auto">
+    <el-form ref="form" :model="json_form_copy" label-width="auto">
       <el-form-item
         v-for="(item, index) in array_form"
         :key="index"
@@ -43,16 +43,16 @@ export default {
   components: {},
   props: {
     array_form: {
-      type: Array,
+      type: Array
     },
     json_form: {
-      type: Object,
-    },
+      type: Object
+    }
   },
   data() {
     //这里存放数据
     return {
-      json_form_copy: this.json_form,
+      json_form_copy: this.json_form
     };
   },
   //监听属性 类似于data概念
@@ -60,7 +60,21 @@ export default {
   //监控data中的数据变化
   watch: {},
   //方法集合
-  methods: {},
+  methods: {
+    reset_form() {
+      this.$refs.form.resetFields();
+    },
+
+    validate_form() {
+      let res = false;
+      this.$refs.form.validate((valid) => {
+        if (valid) {
+          res = true;
+        }
+      });
+      return res;
+    }
+  },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
@@ -71,7 +85,7 @@ export default {
   updated() {}, //生命周期 - 更新之后
   beforeDestroy() {}, //生命周期 - 销毁之前
   destroyed() {}, //生命周期 - 销毁完成
-  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
+  activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 <style lang="less">

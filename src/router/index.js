@@ -19,10 +19,20 @@ VueRouter.prototype.push = function (location, resolve, reject) {
 };
 Vue.use(VueRouter);
 
-const routes = [];
+const routes = [
+  {
+    path: "/login",
+    name: "login",
+    component: () => import("@/views/login.vue"),
+  },
+
+  {
+    path: "/",
+    redirect: "/login",
+  },
+];
 
 const router = new VueRouter({
- 
   routes,
 });
 

@@ -64,9 +64,9 @@ export default {
   methods: {
     tableRowClassName({ row, rowIndex }) {
       if (rowIndex % 2 === 0) {
-        return "dark_blue";
+        return "dark";
       } else {
-        return "light_blue";
+        return "light";
       }
     },
     handleSelectionChange(val) {
